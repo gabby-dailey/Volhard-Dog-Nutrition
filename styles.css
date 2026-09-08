@@ -580,22 +580,18 @@ img { max-width: 100%; display: block; }
   color: var(--text-on-dark-muted);
 }
 .mascot-slot {
-  margin-top: 60px;
-  width: 220px;
-  height: 220px;
-  border-radius: 50%;
-  border: 1px dashed rgba(238,244,242,0.35);
+  margin-top: 48px;
+  width: 260px;
+  height: 260px;
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
-  padding: 20px;
 }
-.mascot-slot span {
-  font-size: 12px;
-  letter-spacing: 0.04em;
-  color: var(--text-on-dark-muted);
-  line-height: 1.5;
+.mascot-slot img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 20px 40px rgba(0,0,0,0.35));
 }
 
 /* ---------- footer ---------- */
