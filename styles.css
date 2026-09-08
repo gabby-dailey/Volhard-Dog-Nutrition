@@ -571,7 +571,16 @@ img { max-width: 100%; display: block; }
     radial-gradient(ellipse 800px 550px at 85% 20%, rgba(43,182,176,0.25), transparent 60%),
     radial-gradient(ellipse 700px 550px at 10% 90%, rgba(43,182,176,0.12), transparent 60%);
 }
-.closing-content { position: relative; text-align: left; }
+.closing-content {
+  position: relative;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 48px;
+  flex-wrap: wrap;
+}
+.closing-text { flex: 1 1 480px; }
 .closing-body {
   margin-top: 26px;
   max-width: 640px;
@@ -580,9 +589,9 @@ img { max-width: 100%; display: block; }
   color: var(--text-on-dark-muted);
 }
 .mascot-slot {
-  margin-top: 48px;
   width: 260px;
   height: 260px;
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
