@@ -12,42 +12,20 @@ function onScroll() {
 window.addEventListener('scroll', onScroll, { passive: true });
 onScroll();
 
-// Scroll reveal (fade-in, fires once)
+// Scroll reveal (fade-in, fires once). Stats count up once here too;
+// the ongoing "loop" is a pure-CSS heartbeat animation, not a repeat.
 const revealEls = document.querySelectorAll('[data-reveal]');
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
       entry.target.classList.add('is-visible');
+      const counts = entry.target.querySelectorAll('.count');
+      counts.forEach((c, i) => animateCount(c, i * 260));
       revealObserver.unobserve(entry.target);
     }
   });
 }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 revealEls.forEach((el) => revealObserver.observe(el));
-
-// Stat count-up: loops continuously while the block is on screen, not a
-// one-shot animation that only plays on the initial scroll past it
-const statLoops = new WeakMap();
-
-function runCountCycle(container) {
-  const counts = container.querySelectorAll('.count');
-  counts.forEach((c, i) => setTimeout(() => animateCount(c), i * 260));
-}
-
-const statLoopObserver = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      if (!statLoops.has(entry.target)) {
-        runCountCycle(entry.target);
-        const id = setInterval(() => runCountCycle(entry.target), 5000);
-        statLoops.set(entry.target, id);
-      }
-    } else if (statLoops.has(entry.target)) {
-      clearInterval(statLoops.get(entry.target));
-      statLoops.delete(entry.target);
-    }
-  });
-}, { threshold: 0.1 });
-document.querySelectorAll('.big-stat').forEach((el) => statLoopObserver.observe(el));
 
 // Animated count-up on the big proof stats
 function animateCount(el, delay = 0) {
