@@ -306,7 +306,7 @@ img { max-width: 100%; display: block; }
 /* ---------- proof intro text ---------- */
 .proof-intro {
   margin-top: 28px;
-  max-width: 620px;
+  max-width: 480px;
   font-size: 18px;
   line-height: 1.7;
   color: var(--text-muted);
@@ -377,6 +377,11 @@ img { max-width: 100%; display: block; }
   align-items: baseline;
   gap: 10px;
   flex-wrap: wrap;
+  animation: statPulse 3.2s ease-in-out infinite;
+}
+@keyframes statPulse {
+  0%, 100% { text-shadow: 0 0 0 rgba(111,227,220,0); }
+  50% { text-shadow: 0 0 22px rgba(111,227,220,0.55); }
 }
 .big-stat-num .prefix { opacity: 0.85; }
 .big-stat-num .prefix.small {
