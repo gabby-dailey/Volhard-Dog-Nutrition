@@ -237,7 +237,7 @@ img { max-width: 100%; display: block; }
   color: var(--text-dark);
   max-width: 900px;
 }
-.serif-heading.big { font-size: clamp(2.4rem, 4.8vw, 4rem); max-width: 980px; }
+.serif-heading.big { font-size: clamp(2.4rem, 4.8vw, 4rem); max-width: 760px; }
 .serif-heading.light { color: var(--text-on-dark); }
 
 /* ---------- meta section ---------- */
@@ -306,7 +306,7 @@ img { max-width: 100%; display: block; }
 /* ---------- proof intro text ---------- */
 .proof-intro {
   margin-top: 28px;
-  max-width: 480px;
+  max-width: 760px;
   font-size: 18px;
   line-height: 1.7;
   color: var(--text-muted);
