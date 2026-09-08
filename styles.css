@@ -121,9 +121,9 @@ img { max-width: 100%; display: block; }
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, rgba(10,20,20,0.72) 0%, rgba(10,20,20,0.55) 35%, rgba(10,20,20,0.85) 75%, rgba(10,20,20,0.97) 100%),
-    linear-gradient(90deg, rgba(10,20,20,0.65) 0%, rgba(10,20,20,0.25) 45%, rgba(10,20,20,0.2) 60%, rgba(10,20,20,0.6) 100%),
-    rgba(10,20,20,0.25);
+    linear-gradient(180deg, rgba(10,20,20,0.58) 0%, rgba(10,20,20,0.42) 35%, rgba(10,20,20,0.70) 75%, rgba(10,20,20,0.82) 100%),
+    linear-gradient(90deg, rgba(10,20,20,0.52) 0%, rgba(10,20,20,0.18) 45%, rgba(10,20,20,0.14) 60%, rgba(10,20,20,0.48) 100%),
+    rgba(10,20,20,0.18);
 }
 .hero-grain {
   position: absolute;
@@ -288,6 +288,15 @@ img { max-width: 100%; display: block; }
   border-left: 2px solid var(--teal);
   padding: 4px 0 4px 32px;
   margin-top: 8px;
+  animation: heartbeat 2.4s ease-in-out infinite;
+  transform-origin: left center;
+}
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  14% { transform: scale(1.035); }
+  28% { transform: scale(1); }
+  42% { transform: scale(1.035); }
+  70% { transform: scale(1); }
 }
 .narrative-quote p {
   font-family: var(--serif);
