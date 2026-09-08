@@ -49,15 +49,6 @@ const statLoopObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.1 });
 document.querySelectorAll('.big-stat').forEach((el) => statLoopObserver.observe(el));
 
-// Hero mute/unmute toggle
-const heroVideo = document.getElementById('heroVideo');
-const muteToggle = document.getElementById('muteToggle');
-
-muteToggle.addEventListener('click', () => {
-  heroVideo.muted = !heroVideo.muted;
-  muteToggle.textContent = heroVideo.muted ? 'UNMUTE' : 'MUTE';
-});
-
 // Animated count-up on the big proof stats
 function animateCount(el, delay = 0) {
   const target = parseFloat(el.getAttribute('data-count'));

@@ -238,6 +238,7 @@ img { max-width: 100%; display: block; }
   max-width: 900px;
 }
 .serif-heading.big { font-size: clamp(2.4rem, 4.8vw, 4rem); max-width: 760px; }
+.serif-heading.wide-heading { max-width: 920px; }
 .serif-heading.light { color: var(--text-on-dark); }
 
 /* ---------- meta section ---------- */
