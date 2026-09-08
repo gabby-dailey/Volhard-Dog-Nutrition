@@ -45,22 +45,31 @@ function animateCount(el, delay = 0) {
   }, delay);
 }
 
-// Hover-to-play video cards (self-hosted <video>, no external embeds)
+// Click-to-play video cards, with sound (self-hosted <video>, no external
+// embeds). Browsers block unmuted autoplay on hover/mouseenter, since that
+// isn't treated as a real user gesture, so these play on click instead.
+const allCardVideos = [];
 document.querySelectorAll('.video-frame[data-video-src]').forEach((frame) => {
   const video = frame.querySelector('.video-el');
   if (!video) return;
+  video.muted = false;
+  allCardVideos.push(video);
 
-  function play() {
-    if (video.readyState < 1) video.load();
-    video.play().catch(() => {});
-  }
+  frame.addEventListener('click', () => {
+    const isPlaying = !video.paused;
+    allCardVideos.forEach((v) => {
+      if (v !== video) { v.pause(); v.currentTime = 0; }
+    });
+    document.querySelectorAll('.video-frame.is-playing').forEach((f) => f.classList.remove('is-playing'));
 
-  function pause() {
-    video.pause();
-    video.currentTime = 0;
-  }
-
-  frame.addEventListener('mouseenter', play);
-  frame.addEventListener('mouseleave', pause);
-  frame.addEventListener('touchstart', play, { passive: true });
+    if (isPlaying) {
+      video.pause();
+      video.currentTime = 0;
+      frame.classList.remove('is-playing');
+    } else {
+      if (video.readyState < 1) video.load();
+      video.play().catch(() => {});
+      frame.classList.add('is-playing');
+    }
+  });
 });

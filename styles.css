@@ -426,7 +426,7 @@ img { max-width: 100%; display: block; }
 }
 .video-poster { transition: opacity 0.5s var(--ease), transform 0.6s var(--ease); z-index: 1; }
 .video-el { z-index: 0; }
-.video-frame:hover .video-poster { opacity: 0; transform: scale(1.03); }
+.video-frame.is-playing .video-poster { opacity: 0; transform: scale(1.03); }
 .play-badge {
   position: absolute;
   top: 50%; left: 50%;
@@ -440,7 +440,8 @@ img { max-width: 100%; display: block; }
   transition: opacity 0.4s ease, transform 0.4s var(--ease);
   padding-left: 3px;
 }
-.video-frame:hover .play-badge { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+.video-frame.is-playing .play-badge { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+.video-frame:hover .play-badge { transform: translate(-50%, -50%) scale(1.08); }
 .video-tag {
   position: absolute;
   top: 20px; left: 20px;
