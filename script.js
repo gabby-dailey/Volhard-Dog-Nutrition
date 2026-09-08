@@ -27,56 +27,25 @@ revealEls.forEach((el) => revealObserver.observe(el));
 // Hero mute/unmute toggle
 const heroVideo = document.getElementById('heroVideo');
 const muteToggle = document.getElementById('muteToggle');
-let heroMuted = true;
-
-function postToHero(func) {
-  heroVideo.contentWindow.postMessage(JSON.stringify({ event: 'command', func, args: [] }), '*');
-}
 
 muteToggle.addEventListener('click', () => {
-  heroMuted = !heroMuted;
-  postToHero(heroMuted ? 'mute' : 'unMute');
-  muteToggle.textContent = heroMuted ? 'UNMUTE' : 'MUTE';
+  heroVideo.muted = !heroVideo.muted;
+  muteToggle.textContent = heroVideo.muted ? 'UNMUTE' : 'MUTE';
 });
 
-// Hover-to-play video cards (proof + direction cards)
-function buildEmbedUrl(videoId) {
-  return `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}` +
-    `&controls=0&showinfo=0&modestbranding=1&rel=0&iv_load_policy=3&playsinline=1&enablejsapi=1`;
-}
-
-document.querySelectorAll('[data-video-id]').forEach((card) => {
-  const videoId = card.getAttribute('data-video-id');
-  const frame = card.querySelector('.video-frame');
-  const embedSlot = card.querySelector('.video-embed');
-  let iframeEl = null;
-  let leaveTimer = null;
-
-  function ensureIframe() {
-    if (iframeEl) return iframeEl;
-    iframeEl = document.createElement('iframe');
-    iframeEl.src = buildEmbedUrl(videoId);
-    iframeEl.title = 'video preview';
-    iframeEl.frameBorder = '0';
-    iframeEl.allow = 'autoplay; encrypted-media';
-    iframeEl.tabIndex = -1;
-    embedSlot.appendChild(iframeEl);
-    return iframeEl;
-  }
+// Hover-to-play video cards (self-hosted <video>, no external embeds)
+document.querySelectorAll('.video-frame[data-video-src]').forEach((frame) => {
+  const video = frame.querySelector('.video-el');
+  if (!video) return;
 
   function play() {
-    clearTimeout(leaveTimer);
-    ensureIframe();
+    if (video.readyState < 1) video.load();
+    video.play().catch(() => {});
   }
 
   function pause() {
-    clearTimeout(leaveTimer);
-    leaveTimer = setTimeout(() => {
-      if (iframeEl) {
-        embedSlot.innerHTML = '';
-        iframeEl = null;
-      }
-    }, 150);
+    video.pause();
+    video.currentTime = 0;
   }
 
   frame.addEventListener('mouseenter', play);
