@@ -12,16 +12,19 @@ function onScroll() {
 window.addEventListener('scroll', onScroll, { passive: true });
 onScroll();
 
-// Scroll reveal
+// Scroll reveal (also triggers the count-up on any big-stat block, so it
+// fires from the exact same, proven-reliable observer instead of a second one)
 const revealEls = document.querySelectorAll('[data-reveal]');
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
       entry.target.classList.add('is-visible');
+      const counts = entry.target.querySelectorAll('.count');
+      counts.forEach((c, i) => animateCount(c, i * 260));
       revealObserver.unobserve(entry.target);
     }
   });
-}, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 revealEls.forEach((el) => revealObserver.observe(el));
 
 // Hero mute/unmute toggle
@@ -50,17 +53,6 @@ function animateCount(el, delay = 0) {
     requestAnimationFrame(tick);
   }, delay);
 }
-
-const countObserver = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      const counts = entry.target.querySelectorAll('.count');
-      counts.forEach((c, i) => animateCount(c, i * 260));
-      countObserver.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.4 });
-document.querySelectorAll('.big-stat').forEach((el) => countObserver.observe(el));
 
 // Hover-to-play video cards (self-hosted <video>, no external embeds)
 document.querySelectorAll('.video-frame[data-video-src]').forEach((frame) => {
