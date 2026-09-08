@@ -33,6 +33,35 @@ muteToggle.addEventListener('click', () => {
   muteToggle.textContent = heroVideo.muted ? 'UNMUTE' : 'MUTE';
 });
 
+// Animated count-up on the big proof stats
+function animateCount(el, delay = 0) {
+  const target = parseFloat(el.getAttribute('data-count'));
+  const suffix = el.getAttribute('data-suffix') || '';
+  const duration = 1400;
+  setTimeout(() => {
+    const start = performance.now();
+    function tick(now) {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const value = Math.round(target * eased);
+      el.textContent = value.toLocaleString() + suffix;
+      if (progress < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }, delay);
+}
+
+const countObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      const counts = entry.target.querySelectorAll('.count');
+      counts.forEach((c, i) => animateCount(c, i * 260));
+      countObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.4 });
+document.querySelectorAll('.big-stat').forEach((el) => countObserver.observe(el));
+
 // Hover-to-play video cards (self-hosted <video>, no external embeds)
 document.querySelectorAll('.video-frame[data-video-src]').forEach((frame) => {
   const video = frame.querySelector('.video-el');
