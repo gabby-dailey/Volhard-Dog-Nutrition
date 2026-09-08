@@ -505,10 +505,10 @@ img { max-width: 100%; display: block; }
 .direction-grid {
   margin-top: 64px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 56px;
+  grid-template-columns: 1fr;
+  gap: 90px;
 }
-.direction-card { position: relative; }
+.direction-card { position: relative; max-width: 1000px; }
 .direction-index {
   font-family: var(--serif);
   font-size: 14px;
