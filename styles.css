@@ -499,37 +499,15 @@ img { max-width: 100%; display: block; }
 /* ---------- animation section ---------- */
 .animation-section { background: var(--cream-soft); }
 
-/* ---------- jingle versatility divider ---------- */
-.jingle-divider {
-  background: #e4e4e0;
-  padding: 90px 0;
-}
-.jingle-kicker {
-  text-align: center;
-  font-family: var(--sans);
-  font-style: normal;
-  font-weight: 700;
-  font-size: 12px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--teal-deep);
-  margin-bottom: 48px;
-}
+/* ---------- jingle versatility ---------- */
 .jingle-grid {
+  margin-top: 56px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 40px;
+  gap: 56px;
 }
 .jingle-card .video-frame {
   background: var(--ink);
-}
-.jingle-caption {
-  margin-top: 16px;
-  text-align: center;
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  color: var(--text-dark);
 }
 
 /* ---------- directions ---------- */
@@ -675,7 +653,6 @@ img { max-width: 100%; display: block; }
   .stat { border-left: none; padding-left: 0; }
   .direction-grid { grid-template-columns: 1fr; }
   .jingle-grid { grid-template-columns: 1fr; gap: 32px; }
-  .jingle-divider { padding: 64px 0; }
   .process-grid { grid-template-columns: 1fr 1fr; }
   .site-footer { flex-direction: column; gap: 6px; }
   .container { padding: 0 24px; }
