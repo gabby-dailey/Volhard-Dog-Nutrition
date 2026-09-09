@@ -501,14 +501,17 @@ img { max-width: 100%; display: block; }
 
 /* ---------- jingle versatility divider ---------- */
 .jingle-divider {
-  background: #f0dfb8;
+  background: #e4e4e0;
   padding: 90px 0;
 }
 .jingle-kicker {
   text-align: center;
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: clamp(1.3rem, 2.2vw, 1.7rem);
+  font-family: var(--sans);
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
   color: var(--teal-deep);
   margin-bottom: 48px;
 }
