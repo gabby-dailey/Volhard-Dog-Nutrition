@@ -499,6 +499,36 @@ img { max-width: 100%; display: block; }
 /* ---------- animation section ---------- */
 .animation-section { background: var(--cream-soft); }
 
+/* ---------- jingle versatility divider ---------- */
+.jingle-divider {
+  background: #f0dfb8;
+  padding: 90px 0;
+}
+.jingle-kicker {
+  text-align: center;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(1.3rem, 2.2vw, 1.7rem);
+  color: var(--teal-deep);
+  margin-bottom: 48px;
+}
+.jingle-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+.jingle-card .video-frame {
+  background: var(--ink);
+}
+.jingle-caption {
+  margin-top: 16px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--text-dark);
+}
+
 /* ---------- directions ---------- */
 .direction-grid {
   margin-top: 64px;
@@ -641,6 +671,8 @@ img { max-width: 100%; display: block; }
   .stat-row { grid-template-columns: 1fr 1fr; row-gap: 32px; }
   .stat { border-left: none; padding-left: 0; }
   .direction-grid { grid-template-columns: 1fr; }
+  .jingle-grid { grid-template-columns: 1fr; gap: 32px; }
+  .jingle-divider { padding: 64px 0; }
   .process-grid { grid-template-columns: 1fr 1fr; }
   .site-footer { flex-direction: column; gap: 6px; }
   .container { padding: 0 24px; }
